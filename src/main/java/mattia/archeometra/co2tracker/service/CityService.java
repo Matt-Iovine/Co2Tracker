@@ -19,6 +19,7 @@ public class CityService {
 
         log.info("Trying to retrieve city by name: {}", cityName);
 
+        //Controllo con isEmpty() che l'Optional contenga la città che stavo cercando altrimenti lancio Eccezione
         Optional<City> cityOpt = cityRepository.findCityByName(cityName);
         if (cityOpt.isEmpty()) {
             log.error("City with name {} not found ", cityName);

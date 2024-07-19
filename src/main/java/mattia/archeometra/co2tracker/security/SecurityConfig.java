@@ -6,7 +6,6 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
@@ -18,7 +17,6 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Configuration
@@ -27,6 +25,7 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        //Configuro la FilterChain per richiedere l'autenticazione per tutte le richieste al percorso del mio controller
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
@@ -54,6 +53,7 @@ public class SecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
+        //Creo gli utenti assegnando il ruolo che rappresenterà la città per la quale potranno leggere i valori di Co2
         UserDetails barcelona = User.withUsername("barcelona")
                 .password(passwordEncoder().encode("password"))
                 .roles("BARCELONA")

@@ -51,7 +51,8 @@ public class Co2TrackerController {
         stopWatch.stop();
         log.info("End of new reading creation in: {} ms", stopWatch.getTotalTimeMillis());
 
-        return new ResponseEntity(
+
+        return new ResponseEntity<>(
                 ResponseDTO.builder()
                         .timestamp(LocalDateTime.now())
                         .data(Map.of("New Saved Reading", savedReading))
@@ -83,7 +84,7 @@ public class Co2TrackerController {
         stopWatch.stop();
         log.info("End of readings retrieval in: {} ms", stopWatch.getTotalTimeMillis());
 
-        return new ResponseEntity(
+        return new ResponseEntity<>(
                 ResponseDTO.builder()
                         .timestamp(LocalDateTime.now())
                         .data(Map.of("District Reading list", co2ReadingList))
@@ -97,9 +98,11 @@ public class Co2TrackerController {
 
     private String getCityNameFromRole() {
 
+        //Estraggo il ruolo dal SecurityContext per conoscere la città
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String role = authentication.getAuthorities().iterator().next().getAuthority();
 
+        //Rimuovo il prefisso ROLE_
         return role.substring(5).toLowerCase();
 
     }

@@ -20,6 +20,7 @@ public class DistrictService {
 
         log.info("Trying to retrieve district {} for city {}" ,districtName, city.getName());
 
+        //Controllo con isEmpty() che l'Optional contenga il distretto che stavo cercando altrimenti lancio Eccezione
         Optional<District> districtOpt = districtRepository.findDistrictByNameAndCity(districtName, city);
 
         if (districtOpt.isEmpty()) {

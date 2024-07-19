@@ -19,6 +19,13 @@ public class ExceptionHandler {
     public ExceptionHandler(){
         super();
     }
+
+    /*
+        Tutte le eccezioni custom vengono gestite dall'exception handler che si occupa di valorizzare
+        adeguatamente il DTO di risposta e restituirlo in una ResponseEntity
+     */
+
+
     @org.springframework.web.bind.annotation.ExceptionHandler({DistrictNameNotFoundException.class})
     public ResponseEntity<ResponseDTO> handleDistrictNameNotFoundException(final DistrictNameNotFoundException ex){
 
