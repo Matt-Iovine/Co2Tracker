@@ -21,9 +21,9 @@ Before you begin, ensure you have met the following requirements:
 CREATE DATABASE co2tracker;
 
 -- Insert cities
-INSERT INTO CITY (name) VALUES ('Barcelona');
-INSERT INTO CITY (name) VALUES ('Wien');
-INSERT INTO CITY (name) VALUES ('Munchen');
+INSERT INTO CITY (name) VALUES ('BARCELONA');
+INSERT INTO CITY (name) VALUES ('WIEN');
+INSERT INTO CITY (name) VALUES ('MUNCHEN');
 
 -- Insert districts
 INSERT INTO DISTRICT (name, city_id) VALUES ('Gràcia', 1);
@@ -35,12 +35,13 @@ INSERT INTO DISTRICT (name, city_id) VALUES ('Maxvorstadt', 3);
 
 ## Configure Database Connection
 
-Update the application.yaml file with your MySQL database credentials.
+Update the application.yaml file with your MySQL database credentials and to chage the auto DDL 
+from create-drop to update after the first execution.
 
-spring.datasource.url=jdbc:mysql://localhost:3306/co2tracker
-spring.datasource.username=**your_username**
-spring.datasource.password=**your_password**
-spring.jpa.hibernate.ddl-auto=**create-drop**
+spring.datasource.url=jdbc:mysql://localhost:3306/co2tracker 
+spring.datasource.username=**your_username** 
+spring.datasource.password=**your_password** 
+spring.jpa.hibernate.ddl-auto=**create-drop** 
 
 ## Swagger
 The application includes Swagger for API documentation and testing. Once the application is running, you can access the Swagger UI at the following URL:
@@ -56,18 +57,18 @@ The application uses Spring Security to manage authentication and authorization.
 To facilitate testing and usage of the API, three predefined users have been created with the following details:
 
 - **Barcelona**
-  - Username: `barcelona`
-  - Password: `password`
+  - Username: `BarcelonaCityHall`
+  - Password: `passwordBarcelona`
   - Role: `BARCELONA`
 
 - **Wien**
-  - Username: `wien`
-  - Password: `password`
+  - Username: `WienCityHall`
+  - Password: `passwordWien`
   - Role: `WIEN`
 
 - **Munchen**
-  - Username: `munchen`
-  - Password: `password`
+  - Username: `MunchenCityHall`
+  - Password: `passwordMunchen`
   - Role: `MUNCHEN`
 
 ### Credential Management

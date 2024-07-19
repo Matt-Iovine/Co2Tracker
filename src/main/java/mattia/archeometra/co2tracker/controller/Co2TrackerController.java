@@ -2,6 +2,7 @@ package mattia.archeometra.co2tracker.controller;
 
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.extern.slf4j.Slf4j;
@@ -65,13 +66,16 @@ public class Co2TrackerController {
     }
 
     @GetMapping(value = "/district/{districtName}", produces = "application/json")
-    @Operation(summary = "Get CO2 readings by district")
+    @Operation(summary = "Get CO2 readings by district name")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Reading retrieved successfully"),
             @ApiResponse(responseCode = "400", description = "District or City not found"),
             @ApiResponse(responseCode = "500", description = "Unexpected internal error!")
     })
-    public ResponseEntity<ResponseDTO> getReadings( @PathVariable String districtName) throws DistrictNameNotFoundException, CityNotFoundException {
+    public ResponseEntity<ResponseDTO> getReadings(
+            @Parameter(description = "Name of the district", example = "Eixample")
+            @PathVariable String districtName
+    ) throws DistrictNameNotFoundException, CityNotFoundException {
 
         log.info("Starting reading retrieval ");
         StopWatch stopWatch = new StopWatch("getReadings");
@@ -102,8 +106,8 @@ public class Co2TrackerController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String role = authentication.getAuthorities().iterator().next().getAuthority();
 
-        //Rimuovo il prefisso ROLE_
-        return role.substring(5).toLowerCase();
+        //Rimuovo il prefisso ROLE_ e mi assicuro che sia tutto in maiuscolo per combaciare con i nomi su DB
+        return role.substring(5).toUpperCase();
 
     }
 

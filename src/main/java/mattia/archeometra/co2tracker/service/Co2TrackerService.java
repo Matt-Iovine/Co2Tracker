@@ -37,7 +37,7 @@ public class Co2TrackerService {
     @Autowired
     DistrictService districtService;
 
-
+    @Transactional
     public Co2ReadingDTO createReading(Co2ReadingDTO trackerDTO, String cityName) throws CityNotFoundException, DistrictNameNotFoundException, TrackerInternalServerError {
 
         //Recupero la entity città dato il nome
@@ -57,8 +57,11 @@ public class Co2TrackerService {
                 Mi assicuro che i metodi save non restituiscano un valore nullo
                 dopo il salvataggio, catchando l'IllegalArgumentException
             */
+
+            //Salvo la nuova lettura di Co2
             savedCo2Reading = co2ReadingRespository.save(newCo2Reading);
 
+            //Valorizzo la bidirezionalità della relazione aggiornando la lista di letture del distretto
             district.getSensorReadings().add(savedCo2Reading);
             districtRepository.save(district);
 
@@ -66,15 +69,17 @@ public class Co2TrackerService {
             throw new TrackerInternalServerError("Something went wrong while trying to persist the informations on the Database");
         }
 
-        //Trasformo la entity restituita da DB in DTO
+        //Trasformo la entity restituita dal DB in DTO
         return co2ReadingMapper.co2ReadingToDTO(savedCo2Reading);
 
     }
 
     public List<Co2ReadingDTO> getReadings(String districtName, String cityName) throws CityNotFoundException, DistrictNameNotFoundException {
 
+        //Recupero la entity città dato il nome
         City city = cityService.findCityByName(cityName);
 
+        //Recupero il distretto dato il nome e la città
         District district = districtService.findDistrictByNameAndCity(districtName, city);
 
         //Trasformo la lista di entity restituita da DB in una lista di DTO

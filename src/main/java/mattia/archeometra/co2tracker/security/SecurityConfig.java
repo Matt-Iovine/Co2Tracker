@@ -54,18 +54,18 @@ public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
         //Creo gli utenti assegnando il ruolo che rappresenterà la città per la quale potranno leggere i valori di Co2
-        UserDetails barcelona = User.withUsername("barcelona")
-                .password(passwordEncoder().encode("password"))
+        UserDetails barcelona = User.withUsername("BarcelonaCityHall")
+                .password(passwordEncoder().encode("passwordBarcelona"))
                 .roles("BARCELONA")
                 .build();
 
-        UserDetails wien = User.withUsername("wien")
-                .password(passwordEncoder().encode("password"))
+        UserDetails wien = User.withUsername("WienCityHall")
+                .password(passwordEncoder().encode("passwordWien"))
                 .roles("WIEN")
                 .build();
 
-        UserDetails munchen = User.withUsername("munchen")
-                .password(passwordEncoder().encode("password"))
+        UserDetails munchen = User.withUsername("MunchenCityHall")
+                .password(passwordEncoder().encode("passwordMunchen"))
                 .roles("MUNCHEN")
                 .build();
 
