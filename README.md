@@ -47,28 +47,28 @@ The application includes Swagger for API documentation and testing. Once the app
 
 [http://localhost:8080/swagger-ui.html](http://localhost:8080/swagger-ui.html)
 
-## Autenticazione
+## Authentication
 
-### Tipo di Autenticazione
-L'applicazione utilizza Spring Security per gestire l'autenticazione e l'autorizzazione. In particolare, è configurata per utilizzare l'autenticazione HTTP Basic, che richiede agli utenti di fornire un nome utente e una password per accedere alle risorse protette.
+### Type of Authentication
+The application uses Spring Security to manage authentication and authorization. Specifically, it is configured to use HTTP Basic authentication, which requires users to provide a username and password to access protected resources.
 
-### Utenti Predefiniti
-Per facilitare i test e l'utilizzo dell'API, sono stati creati tre utenti predefiniti con i seguenti dettagli:
+### Predefined Users
+To facilitate testing and usage of the API, three predefined users have been created with the following details:
 
 - **Barcelona**
-    - Nome utente: `barcelona`
-    - Password: `password`
-    - Ruolo: `BARCELONA`
+  - Username: `barcelona`
+  - Password: `password`
+  - Role: `BARCELONA`
 
 - **Wien**
-    - Nome utente: `wien`
-    - Password: `password`
-    - Ruolo: `WIEN`
+  - Username: `wien`
+  - Password: `password`
+  - Role: `WIEN`
 
 - **Munchen**
-    - Nome utente: `munchen`
-    - Password: `password`
-    - Ruolo: `MUNCHEN`
+  - Username: `munchen`
+  - Password: `password`
+  - Role: `MUNCHEN`
 
-### Gestione delle Credenziali
-Le credenziali degli utenti sono gestite in memoria utilizzando `InMemoryUserDetailsManager`.
+### Credential Management
+User credentials are managed in memory using `InMemoryUserDetailsManager`.
