@@ -31,6 +31,7 @@ INSERT INTO DISTRICT (name, city_id) VALUES ('Eixample', 1);
 INSERT INTO DISTRICT (name, city_id) VALUES ('Währing', 2);
 INSERT INTO DISTRICT (name, city_id) VALUES ('Penzing', 2);
 INSERT INTO DISTRICT (name, city_id) VALUES ('Maxvorstadt', 3);
+```
 
 ## Configure Database Connection
 
