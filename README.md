@@ -40,14 +40,14 @@ Update the application.yaml file with your MySQL database credentials.
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/co2tracker
-    username: ## your_username
-    password: ## your_password
+    username: **your_username**
+    password: **your_password**
   jpa:
     hibernate:
-      ddl-auto: ## update
+      ddl-auto: **update**
 
 ## Swagger
 The application includes Swagger for API documentation and testing. Once the application is running, you can access the Swagger UI at the following URL:
 
-http://localhost:8080/swagger-ui.html
+[Swagger] (http://localhost:8080/swagger-ui.html)
 
