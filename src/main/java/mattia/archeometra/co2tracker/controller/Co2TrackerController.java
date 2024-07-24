@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import mattia.archeometra.co2tracker.dto.Co2ReadingDTO;
 import mattia.archeometra.co2tracker.dto.ResponseDTO;
@@ -38,7 +39,7 @@ public class Co2TrackerController {
             @ApiResponse(responseCode = "400", description = "District or City not found"),
             @ApiResponse(responseCode = "500", description = "Unexpected internal error!")
     })
-    public ResponseEntity<ResponseDTO> createReading( @RequestBody Co2ReadingDTO trackerDTO) throws DistrictNameNotFoundException, CityNotFoundException, TrackerInternalServerError {
+    public ResponseEntity<ResponseDTO> createReading(@Valid @RequestBody Co2ReadingDTO trackerDTO) throws DistrictNameNotFoundException, CityNotFoundException, TrackerInternalServerError {
 
         log.info("Starting new reading creation");
         StopWatch stopWatch = new StopWatch("createReading");
@@ -64,6 +65,8 @@ public class Co2TrackerController {
                 ResponseDTO.CustomStatusCode.TRACKER_CREATION_OK.httpValue()
         );
     }
+
+    //Request param è consigliabile con 2 o + parametri di ricerca
 
     @GetMapping(value = "/district/{districtName}", produces = "application/json")
     @Operation(summary = "Get CO2 readings by district name")
